@@ -17,6 +17,6 @@ public class Main
         s.nachbarnAusgeben("M");
         
         // Besuche alle Knoten
-        s.reise("M");
+        s.reise("IN");
     }
 }

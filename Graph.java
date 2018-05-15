@@ -34,14 +34,14 @@ public class Graph
     // Aufgabe 1: Schreibe Kommentare. Was wird hier gemacht?
     public void tiefensuche(String bez)
     {
-        // Dein Kommentar
+        // Nummer des Startknotens
         int startNr = knotennummerGeben(bez); 
-        // Dein Kommentar
+        // Zurücksetzen der Makierungen
         for (int i = 0; i < anzahl; i++)
         {
             knotenliste[i].markierungSetzen(false);
         }
-        // Dein Kommentar
+        // Starten der Suche beim Startknoten
         tiefensucheKnoten(startNr);
     }
     
@@ -50,13 +50,17 @@ public class Graph
     private void tiefensucheKnoten(int nummer)
     {
         // Knoten als besucht markieren
-       
+            knotenliste[nummer].markierungSetzen(true);
         // Information über Knote ausgeben
-
+            System.out.println(knotenliste[nummer].inhaltGeben());
         // Bearbeitung der noch nicht besuchten Nachbarknoten
         for (int i = 0; i < anzahl; i++)
         {
-            //
+            if(adjazenzmatrix[nummer][i] > 0){
+                if(knotenliste[i].markierungGeben() == false){
+                    tiefensucheKnoten(i);
+                }
+            }
         }
         System.out.println("zurück");
     }
@@ -192,5 +196,23 @@ public class Graph
             }
         }
     }
-
+    private void tiefensucheKnotenanfang(int nummer , char bu)
+    {
+        // Knoten als besucht markieren
+            knotenliste[nummer].markierungSetzen(true);
+        // Information über Knote ausgeben
+            if(knotenliste[nummer].inhaltGeben().charAt(0) == bu  ){    
+                System.out.println(knotenliste[nummer].inhaltGeben());
+            }
+        // Bearbeitung der noch nicht besuchten Nachbarknoten
+        for (int i = 0; i < anzahl; i++)
+        {
+            if(adjazenzmatrix[nummer][i] > 0){
+                if(knotenliste[i].markierungGeben() == false){
+                    tiefensucheKnoten(i);
+                }
+            }
+        }
+        System.out.println("zurück");
+    }
 }
